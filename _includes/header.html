@@ -11,7 +11,7 @@
       <ul class="nav-list">
       {% for item in site.data.navigation %}
         <li class="nav-item">
-          <a href="{{ item.url | relative_url }}" class="{% if page.url == item.url %}current{% endif %}" {% if page.url == item.url %}aria-current="page"{% endif %}>
+          <a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="current" aria-current="page"{% endif %}>
             {{ item.title }}
           </a>
         </li>
