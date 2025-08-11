@@ -5,15 +5,13 @@ title: かしわもちかずとCDご注文フォーム
 <p>以下のフォームに必要事項をご入力の上、送信ボタンを押してください。<br> 送信が完了すると、ご入力いただいたメールアドレス宛に内容確認のメールをお送りいたします。</p>
 <p>迷惑メール拒否設定の影響で、ご注文に関するメールが届かない場合があります。<br> 恐れ入りますが、「order@kitabatake1013.jp」からのメールを受信許可に設定していただきますようお願いいたします。</p>
 <form action="https://ssgform.com/s/Lxb2AeteJguZ" method="post">
-    <label for="product">品名（必須）：</label>
-    <select name="品名" id="product" required>
-        <option value="選択してください">選択してください</option>
-        <option value="届け！僕の歌" selected>届け！僕の歌</option>
-    </select>
+    <input type="hidden" name="品名" value="届け！僕の歌">
     <label for="count">数量（必須）：</label>
     <input type="number" name="数量" id="count" value="1" min="1" required>
     <label for="name">氏名（必須）：</label>
-    <input type="text" name="氏名" id="name" required>
+    <input type="text" name="氏名" id="name" placeholder="例：山田太郎" required>
+    <label for="furigana">ふりがな（必須）：</label>
+    <input type="text" name="ふりがな" id="furigana" placeholder="例：やまだたろう" required>
     <label for="postal">郵便番号（必須）：</label>
     <input type="text" name="郵便番号" id="postal" placeholder="例：123-4567" required>
     <label for="address">住所（必須）：</label>
