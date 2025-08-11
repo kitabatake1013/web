@@ -24,3 +24,89 @@ title: かしわもちかずとCDご注文フォーム
     <input type="email" name="メールアドレス" id="email" required>
     <button type="submit">送信</button>
 </form>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const postalInput = document.getElementById('postal');
+    const addressInput = document.getElementById('address');
+    
+    postalInput.addEventListener('blur', function() {
+        const postalCode = this.value.replace(/[^0-9]/g, ''); // 数字のみ抽出
+        
+        if (postalCode.length === 7) {
+            // 郵便番号が7桁の場合、住所を検索
+            fetchAddress(postalCode);
+        }
+    });
+    
+    function fetchAddress(postalCode) {
+        const url = `https://zipcloud.ibsnet.co.jp/api/search?zipcode=${postalCode}`;
+        
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 200 && data.results && data.results.length > 0) {
+                    const result = data.results[0];
+                    const fullAddress = result.address1 + result.address2 + result.address3;
+                    addressInput.value = fullAddress;
+                } else {
+                    // 住所が見つからない場合は何もしない（ユーザーが手動入力）
+                    console.log('住所が見つかりませんでした');
+                }
+            })
+            .catch(error => {
+                console.error('住所検索エラー:', error);
+                // エラーが発生した場合は何もしない（ユーザーが手動入力）
+            });
+    }
+    
+    // 郵便番号入力時のフォーマット（ハイフン自動挿入）
+    postalInput.addEventListener('input', function(e) {
+        const currentValue = this.value;
+        const cursorPosition = this.selectionStart;
+        
+        // 数字のみ抽出
+        let numericValue = currentValue.replace(/[^0-9]/g, '');
+        
+        // 7桁を超える場合は切り捨て
+        if (numericValue.length > 7) {
+            numericValue = numericValue.substring(0, 7);
+        }
+        
+        // ハイフンを挿入してフォーマット
+        let formattedValue = numericValue;
+        if (numericValue.length >= 4) {
+            formattedValue = numericValue.substring(0, 3) + '-' + numericValue.substring(3);
+        }
+        
+        // 値が変更された場合のみ更新
+        if (currentValue !== formattedValue) {
+            this.value = formattedValue;
+            
+            // キャレット位置を調整
+            let newCursorPosition = cursorPosition;
+            
+            // ハイフンが挿入される位置（4文字目）を通過した場合の調整
+            if (cursorPosition === 4 && formattedValue.length >= 4 && currentValue.length < formattedValue.length) {
+                // ハイフンが自動挿入された場合、キャレットをハイフンの後に移動
+                newCursorPosition = 5;
+            } else if (cursorPosition > 3 && formattedValue.includes('-')) {
+                // ハイフン以降の位置にいる場合は、元の位置を維持
+                // ただし、ハイフンが含まれる分だけ調整
+                const beforeHyphenLength = currentValue.substring(0, cursorPosition).replace(/[^0-9]/g, '').length;
+                if (beforeHyphenLength > 3) {
+                    newCursorPosition = beforeHyphenLength <= 3 ? beforeHyphenLength : beforeHyphenLength + 1;
+                }
+            }
+            
+            // 新しい値の長さを超えないように調整
+            newCursorPosition = Math.min(newCursorPosition, formattedValue.length);
+            
+            // キャレット位置を設定
+            setTimeout(() => {
+                this.setSelectionRange(newCursorPosition, newCursorPosition);
+            }, 0);
+        }
+    });
+});
+</script>
