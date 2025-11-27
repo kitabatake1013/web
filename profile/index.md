@@ -28,4 +28,4 @@ title: プロフィール
 
 * X（旧Twitter）：[@kashiwamochi110](https://x.com/kashiwamochi110/)
 * Facebook：[北畠一翔](https://www.facebook.com/profile.php?id=61566512994942)
-* ブログ：[かしわもちかずとのブログ](https://kitabatake1013.github.io/)
+* ブログ：[かしわもちかずとのブログ](https://blog.kitabatake1013.jp/)
