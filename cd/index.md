@@ -74,6 +74,8 @@ title: CD販売
 
 * [CD「届け！僕の歌」サンプル音源]({{ site.url }}/cd/sample.mp3)
 
+また、YouTubeに公開している「[かしわもちかずとLIVE 2020～お部屋でライブ～](https://www.youtube.com/watch?v=vMBUFIT_KOg)」では、収録曲の弾き語りバージョンをお聞きいただけます。
+
 ### ご購入について
 
 現在のところ、アルバム「届け！僕の歌」はCDでのみ販売しております。
