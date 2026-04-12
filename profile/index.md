@@ -32,3 +32,4 @@ title: プロフィール
 * X（旧Twitter）：[@kashiwamochi110](https://x.com/kashiwamochi110/)
 * Facebook：[北畠一翔](https://www.facebook.com/profile.php?id=61566512994942)
 * ブログ：[かしわもちかずとのブログ](https://blog.kitabatake1013.jp/)
+* ポッドキャスト：[Blind Tech JP](https://podcast.kitabatake1013.jp/)
